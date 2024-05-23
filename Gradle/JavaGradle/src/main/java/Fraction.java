@@ -9,6 +9,8 @@ import java.io.*;
  *         Software Engineering, CIDSE, IAFSE, ASU Poly
  * @version January 2020
  */
+
+
 public class Fraction {
 
    private int numerator, denominator;
@@ -17,15 +19,21 @@ public class Fraction {
       numerator = denominator = 0;
    }
 
-   public void print() {
-    System.out.print(numerator + "/" + denominator );
+   public Fraction(int numerator, int denominator){
+      this.numerator = numerator;
+      this.denominator = denominator;
    }
 
-   public void setNumerator (int n ){
+   public void print() {
+      System.out.print(numerator + "/" + denominator + " = " + numerator / denominator);
+	  
+   }
+
+   public void setNumerator(int n){
       numerator = n;
    }
 
-   public void setDenominator (int d) {
+   public void setDenominator(int d) {
       denominator = d;
    }
 
@@ -39,22 +47,33 @@ public class Fraction {
 
    public static void main (String args[]) {
       try {
-         // create a new instance
-         // Fraction *frac = [[Fraction alloc] init];
-         Fraction frac = new Fraction();
+         int numerator, denominator =0;
 
-         // set the values
-         frac.setNumerator(1);
-         frac.setDenominator(3);
+         // Parse command line arguments
+         if (args.length == 2) {
+            numerator = Integer.parseInt(args[0]);
+            denominator = Integer.parseInt(args[1]);
+		} else if (args.length == 1){
+            numerator = Integer.parseInt(args[0]);
+         } else {
+            // Default values
+            numerator = 1;
+            denominator = 3;
+         }
 
-         // print it
+         // Create a new instance of Fraction
+         Fraction frac = new Fraction(numerator, denominator);
+
+         // Print the fraction
          System.out.print("The fraction is: ");
          frac.print();
          System.out.println("");
 
-      }catch(Exception e) {
+      } catch(Exception e) {
          e.printStackTrace();
       }
    }
 }
 
+  
+    
